@@ -1,7 +1,8 @@
 # $ pip install debugpy
 import debugpy
 
-debugpy.listen(5678)
+if not debugpy.is_client_connected():
+    debugpy.listen(5678)
 
 # original script
 import random
