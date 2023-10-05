@@ -5,3 +5,4 @@ dist
 __temp
 *.bak
 debugpy_dependencies
+debugpy*.log
