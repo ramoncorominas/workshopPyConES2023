@@ -1,4 +1,5 @@
 import random
+from ui import show_message, ask_for_input
 
 # game settings
 MIN_NUMBER, MAX_NUMBER = 1, 20
@@ -20,9 +21,9 @@ def play_game() -> None:
     # message to show before each bet prompt
     bet_prefix = f"El número secreto está entre {MIN_NUMBER} y {MAX_NUMBER}\n"  # hint for first try only
     for current_bet in range(1, MAX_TRIES +1):
-        last_bet = int(input(f"{bet_prefix}Tu apuesta: "))
+        last_bet = int(ask_for_input(f"{bet_prefix}Tu apuesta: "))
         if last_bet == secret_number:  # succeed -> winner
-            print(f"¡Buen trabajo! ¡Lo has resuelto en {current_bet} intentos!")
+            show_message(f"¡Buen trabajo! ¡Lo has resuelto en {current_bet} intentos!")
             return
         elif last_bet < secret_number:  # bet is too low
             bet_prefix = "Tu apuesta es muy baja."
@@ -30,10 +31,10 @@ def play_game() -> None:
             bet_prefix = "Tu apuesta es muy alta."
     
     # max tries exhausted: game over -> looser
-    print(f"¡Oooh, nooo, has perdido! El número secreto era {secret_number}")
+    show_message(f"¡Oooh, nooo, has perdido! El número secreto era {secret_number}")
 
 
 if __name__ == '__main__':
-    print('¡Hola! ¡Vamos a jugar!')
+    show_message('¡Hola! ¡Vamos a jugar!')
     play_game()
-    print('¡Gracias por jugar, nos vemos!')
+    show_message('¡Gracias por jugar, nos vemos!')
