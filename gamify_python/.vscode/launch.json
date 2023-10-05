@@ -9,7 +9,7 @@
             "type": "python",
             "request": "attach",
             "connect": {
-                "host": "localhost",
+                "host": "gamify.debug",
                 "port": 5678
             },
             "pathMappings": [
