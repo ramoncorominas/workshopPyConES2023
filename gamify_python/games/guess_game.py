@@ -3,6 +3,7 @@ import os
 import sys
 
 DEBUGGER_DIR = r'C:\debuggers\debugger_python310'  # match Python version of the app
+PYTHON_EXE = r'C:\Users\Tinitun\AppData\Local\Programs\Python\Python310\python.exe'
 sys.path.insert(0, DEBUGGER_DIR)
 os.environ['PYDEVD_DISABLE_FILE_VALIDATION'] = '1'
 import debugpy
@@ -10,6 +11,7 @@ import debugpy
 if not debugpy.is_client_connected():
     this_dir = os.path.dirname(__file__)
     debugpy.log_to(os.path.join(this_dir, 'debug_logs'))  # optional
+    debugpy.configure(python=PYTHON_EXE)
     debugpy.listen(('0.0.0.0', 5678))  # interface accepting connections
     print('Esperando por el cliente de depuración...')
     debugpy.wait_for_client()  # optional
