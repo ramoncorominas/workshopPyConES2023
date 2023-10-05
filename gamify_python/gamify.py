@@ -1,3 +1,9 @@
+# $ pip install debugpy
+import debugpy
+
+debugpy.listen(5678)
+
+# original script
 import random
 from ui import show_message, ask_for_input
 from audioplayer import play_wav
