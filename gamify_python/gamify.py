@@ -1,7 +1,11 @@
 # $ pip install debugpy
+
+import os
 import debugpy
 
 if not debugpy.is_client_connected():
+    this_dir = os.path.dirname(__file__)
+    debugpy.log_to(os.path.join(this_dir, 'debug_logs'))  # optional
     debugpy.listen(5678)
 
 # original script
