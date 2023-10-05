@@ -1,5 +1,6 @@
 import random
 from ui import show_message, ask_for_input
+from audioplayer import play_wav
 
 # game settings
 MIN_NUMBER, MAX_NUMBER = 1, 20
@@ -23,14 +24,18 @@ def play_game() -> None:
     for current_bet in range(1, MAX_TRIES +1):
         last_bet = int(ask_for_input(f"{bet_prefix}Tu apuesta: "))
         if last_bet == secret_number:  # succeed -> winner
+            play_wav('winner')
             show_message(f"¡Buen trabajo! ¡Lo has resuelto en {current_bet} intentos!")
             return
         elif last_bet < secret_number:  # bet is too low
+            play_wav('low')
             bet_prefix = "Tu apuesta es muy baja."
         elif last_bet > secret_number:  # bet is too high
+            play_wav('high')
             bet_prefix = "Tu apuesta es muy alta."
     
     # max tries exhausted: game over -> looser
+    play_wav('looser')
     show_message(f"¡Oooh, nooo, has perdido! El número secreto era {secret_number}")
 
 
