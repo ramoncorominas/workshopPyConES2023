@@ -1,8 +1,20 @@
 import os
 import time 
 
-os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'  # hide Pygame's support message
-import pygame as pg 
+# we need to monkey patch os.add_dll_directory  for packaging because
+# from python >= 3.8 it tries to open library.zip as a directory
+def fixed_add_dll_directory(path):
+    if '.zip' in path:
+        path = path.split('.zip')[0] + '.zip'
+    return add_dll_directory_orig(path)
+
+
+try:  # this will only patch if really needed
+    add_dll_directory_orig = os.add_dll_directory
+    os.add_dll_directory = fixed_add_dll_directory
+finally:
+    os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'  # hide Pygame's support message
+    import pygame as pg 
 
 WAVES_DIR = 'waves'
 
