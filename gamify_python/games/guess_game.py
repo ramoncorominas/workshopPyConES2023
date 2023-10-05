@@ -1,6 +1,9 @@
-# $ pip install debugpy
-
+# previous step: create debugger dir with debugpy and its dependencies
 import os
+import sys
+
+DEBUGGER_DIR = r'C:\debuggers\debugger_python310'  # match Python version of the app
+sys.path.insert(0, DEBUGGER_DIR)
 import debugpy
 
 if not debugpy.is_client_connected():
